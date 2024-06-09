@@ -1,0 +1,150 @@
+* { padding: 0; margin: 0; }
+
+html, body {
+  height: 99%;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: top;
+}
+
+body > * {
+  flex-shrink: 0;
+}
+
+.mainContainer {
+    width: 99%;
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid #0a0101;
+    box-shadow: 0 2px 4px rgba(39, 8, 214, 0.1);
+    margin-top: 1px;
+    flex-grow: 1;
+}
+
+#content {
+    background-color: lightblue;
+    border: 1px solid #000000;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.1);
+}
+  
+#header {
+    display: flex;
+    background-color: goldenrod; 
+    color: #ffffff;
+    padding: 20px;
+    font-size: 25px;
+    font-weight: bold;
+    border: 1px solid #000000;
+}
+
+.logo {
+    margin-right: 10px;
+    overflow:visible;
+}
+
+.headerText {
+    margin-left: 5px;
+}
+
+.questionContainer {
+    background: #fdffc2;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+  
+#conversation {
+    height: 650px;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: #FFEC9D;
+}
+  
+.message {
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    font-size: 16px;
+    line-height: 20px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    max-width: 100%;
+    padding: 0 15px;
+}
+
+.messageText {
+    background-color: rgb(234, 237, 238);
+    color: #000000;
+    font-size: 1.1em;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+  
+.userMessage {
+    justify-content: flex-end;
+}
+
+.userMessage .messageText {
+    background-color: rgb(199, 229, 239);
+}
+
+#questionForm {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid goldenrod}
+  
+#promptInput {
+    flex: 1;
+    height: 60px;
+    border: 1px solid #7f9bbe;
+    padding: 0 10px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+    background: goldenrod; 
+    color: black;
+    border: none;
+    
+}
+
+.sendIcon {
+    margin-right: 10px;
+    cursor: pointer;
+}
+  
+#promptInput:focus {
+    border-color: #000000;
+    outline: none;
+}
+  
+#askButton {
+    background-color: transparent;
+    border: none;
+}
+
+::placeholder {
+    color: #ffffff;
+    opacity: 1;
+}
+  
+::-ms-input-placeholder { 
+    color: #ffffff;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+  
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+   
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="ai.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor App</title>
+
+    <style>
+      *{
+        text-decoration: none;
+      }
+      .navbar{
+          background: #FFEC9D; font-family: calibri; padding-right: 15px;padding-left: 15px; height: 70px; margin-top: 10px; margin-bottom: 10px; border-radius: 10px;
+      }
+      .navdiv{
+          display: flex; align-items: center; justify-content: space-between; padding-top: 10px; 
+      }
+      .logo a{
+          font-size: 35px; font-weight: 600; color: black;
+      }
+      li{
+          list-style: none; display: inline-block;
+      }
+      li a{
+          color: black; font-size: 18px; font-weight: bold; margin-right: 25px; 
+      }
+      ul button{
+          background-color: #EAD371; margin-left: 10px; border-radius: 10px; padding: 10px; width: 90px; border: none;
+      }
+      ul button a{
+          color:black ; font-weight: bold; font-size: 15px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="navbarContainer">
+      <nav class="navbar">
+        <div class="navdiv">
+          <div class="logo"><a href="index.html"> <img src="TutorHive2.png"></a> </div>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="learn.html">Learn</a></li>
+            <button><a href="login.html">Log In</a></button>
+            <button><a href="signup.html">Sign Up</a></button>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+    <div class="mainContainer">
+      <div id="header">
+          <img class="logo" src="ai.png" alt="">
+          <h1 class="headerText">Learn with AI</h1>
+      </div>
+      <div id="content">
+          <div id="conversation">
+            <div class="message">
+              <p class="messageText">Hi! I am your AI Tutor. What do you want to learn today?</p>
+            </div>
+          </div>
+          <form id="questionForm">
+            <div class="questionContainer">
+              <input id="promptInput" type="text" style="color:white" placeholder="Enter your question here...">
+              <button id="askButton" type="submit">
+                <img class="sendIcon" src="send.png" alt="">
+              </button>
+            </div>
+          </form>
+      </div>  
+    </div>
+
+
+    <script type="importmap">
+      {
+        "imports": {
+          "@google/generative-ai": "https://esm.run/@google/generative-ai"
+        }
+      }
+    </script>
+
+    <script type="module">
+      import { GoogleGenerativeAI } from "@google/generative-ai";
+      const API_KEY = "AIzaSyBwCfVzlmsp2KL3TjCuMOhvKPVPAcm9VjI";
+      const genAI = new GoogleGenerativeAI(API_KEY);
+      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      document.getElementById('questionForm').addEventListener('submit', onSubmit);
+      const conversation = document.getElementById('conversation');
+
+      async function onSubmit(event) {
+          event.preventDefault();
+          const prompt = document.getElementById('promptInput').value;
+
+          let userPrompt = document.createElement('div');
+          userPrompt.classList.add('message', 'userMessage');
+          userPrompt.innerHTML = `<p class="messageText">${prompt}</p>`;
+          conversation.appendChild(userPrompt);
+
+          const result = await model.generateContent(prompt);
+          const response = await result.response;
+          const text = response.text();
+
+          let newResponse = document.createElement('div');
+          newResponse.classList.add('message');
+          newResponse.innerHTML = `<p class="messageText">${text}</p>`;
+          
+          conversation.appendChild(newResponse);
+          newResponse.scrollIntoView({behavior: "smooth"});
+
+          document.getElementById('promptInput').value = '';
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+#aiTool {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    border:none;
+    background-color: #FFEC9D;
+    cursor: pointer;
+}
+
